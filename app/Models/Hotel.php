@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 
@@ -27,8 +28,8 @@ class Hotel extends Model
         'address'
     ];
 
-    public function facilities(): MorphMany
+    public function facilities(): BelongsToMany
     {
-        return $this->morphMany(Facility::class, 'facilableHotels', 'facility_hotels');
+        return $this->belongsToMany(Facility::class, 'facility_hotels');
     }
 }
