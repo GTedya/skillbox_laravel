@@ -12,6 +12,7 @@
             <div class="w-full md:w-2/3 px-4">
                 <div class="text-2xl font-bold">{{ $hotel->name }}</div>
                 <div class="flex items-center">
+                    <x-gmdi-pin-drop-o class="w-5 h-5 mr-1 text-blue-700"/>
                     {{ $hotel->address }}
                 </div>
                 <div>{{ $hotel->description }}</div>
@@ -40,15 +41,15 @@
                     </div>
                 </div>
             </form>
-{{--            @if($startDate && $endDate)--}}
-{{--                <div class="flex flex-col w-full lg:w-4/5">--}}
-{{--                    @foreach($rooms as $room)--}}
-{{--                        <x-rooms.room-list-item :room="$room" class="mb-4"/>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            @else--}}
-{{--                <div></div>--}}
-{{--            @endif--}}
+            @if($startDate && $endDate)
+                <div class="flex flex-col w-full lg:w-4/5">
+                    @foreach($rooms as $room)
+                        <x-rooms.room-list-item :room="$room" class="mb-4"/>
+                    @endforeach
+                </div>
+            @else
+                <div></div>
+            @endif
         </div>
     </div>
 </x-app-layout>

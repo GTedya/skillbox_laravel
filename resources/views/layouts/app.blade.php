@@ -8,20 +8,19 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <script src="{{ mix('js/app.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
-
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="bg-gray-100 min-h-screen">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            @if(isset($header))
-                <header class="bg-white shadow">
+            @if (isset($header))
+                <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -29,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="px-4">
+            <main>
                 {{ $slot }}
             </main>
         </div>

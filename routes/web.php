@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('index');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/hotels', [\App\Http\Controllers\HotelController::class, 'index'])->name('hotels.index');
+    Route::get('/bookings', [\App\Http\Controllers\HotelController::class, 'index'])->name('bookings.index');
+    Route::get('/hotels/{hotel}', [\App\Http\Controllers\HotelController::class, 'show'])->name('hotels.show');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
