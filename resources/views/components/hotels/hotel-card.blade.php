@@ -16,7 +16,7 @@
             <div class="flex items-center py-2">
                 @foreach($hotel->facilities->take(2) as $facility)
                     <div class="pr-2 text-xs">
-                        <span>•</span> {{ $facility->name }}
+                        <span>•</span> {{ $facility->title }}
                     </div>
                 @endforeach
             </div>
