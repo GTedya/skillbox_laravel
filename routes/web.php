@@ -24,6 +24,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/hotels', [\App\Http\Controllers\HotelController::class, 'index'])->name('hotels.index');
+    Route::get('/hotels/create', [\App\Http\Controllers\HotelController::class, 'index'])->name(
+        'hotels.create'
+    )->middleware('admin');
+    Route::patch('/hotels/{hotel}', [\App\Http\Controllers\HotelController::class, 'edit'])->name(
+        'hotels.edit'
+    )->middleware('admin');
     Route::get('/bookings', [\App\Http\Controllers\BookingController::class, 'index'])->name('bookings.index');
     Route::post('/bookings', [\App\Http\Controllers\BookingController::class, 'store'])->name('bookings.store');
     Route::get('/hotels/{hotel}', [\App\Http\Controllers\HotelController::class, 'show'])->name('hotels.show');
@@ -32,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
