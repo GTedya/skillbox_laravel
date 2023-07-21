@@ -4,6 +4,14 @@
 @endphp
 
 <x-app-layout>
+    @if(auth()->user()->is_admin)
+        <form action="{{ url('hotels',$hotel) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <x-link-button>Удалить</x-link-button>
+        </form>
+        <x-link-button href="{{ route('hotels.edit', ['hotel' => $hotel]) }}">Изменить</x-link-button>
+        @endif
     <div class="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div class="flex flex-wrap mb-12">
             <div class="flex items-center">
@@ -51,6 +59,5 @@
         @else
             <div></div>
         @endif
-    </div>
     </div>
 </x-app-layout>
