@@ -33,12 +33,22 @@ class Room extends Model
     ];
 
     protected $casts = [
-      'floor_area' => 'float',
+        'floor_area' => 'float',
     ];
 
 
     public function facilities(): BelongsToMany
     {
         return $this->belongsToMany(Facility::class, 'facility_rooms');
+    }
+
+    public function hotel(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Hotel::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
 }
