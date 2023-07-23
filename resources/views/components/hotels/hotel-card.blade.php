@@ -25,6 +25,14 @@
             <div class="flex justify-end">
                 <x-link-button href="{{ route('hotels.show', ['hotel' => $hotel]) }}">Подробнее</x-link-button>
             </div>
+            @if(auth()->user()->is_admin)
+                <div class="flex justify-center">
+                    <x-link-button href="{{ route('hotels.edit', ['hotel' => $hotel]) }}">Изменить</x-link-button>
+                </div>
+                <div class="flex sm:justify-start">
+                    <x-link-button href="{{ route('hotels.show', ['hotel' => $hotel]) }}">Удалить</x-link-button>
+                </div>
+            @endif
         </div>
 
     </div>
