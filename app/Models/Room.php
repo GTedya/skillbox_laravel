@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -35,10 +34,4 @@ class Room extends Model
     protected $casts = [
       'floor_area' => 'float',
     ];
-
-
-    public function facilities(): BelongsToMany
-    {
-        return $this->belongsToMany(Facility::class, 'facility_rooms');
-    }
 }

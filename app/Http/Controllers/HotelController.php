@@ -16,7 +16,6 @@ class HotelController extends Controller
 
     public function show(Hotel $hotel):View
     {
-        $rooms = $hotel->rooms;
-        return view('hotels.show', compact('hotel', 'rooms'));
+        return view('hotels.show', compact('hotel'));
     }
 }
