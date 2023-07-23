@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -12,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @property int $id
  * @property string $name
+ * @property boolean $is_admin
  * @property string $lastname
  * @property string $email
  * @property string $password
@@ -32,6 +34,7 @@ class User extends Authenticatable
         'lastname',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -53,4 +56,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function bookings():HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -16,6 +17,8 @@ use Illuminate\Support\Carbon;
  * @property Carbon $finished_at
  * @property ?Carbon $created_at
  * @property ?Carbon $updated_at
+ * @property User $user
+ * @property Room $room
  */
 class Booking extends Model
 {
@@ -29,4 +32,14 @@ class Booking extends Model
         'price',
         'days',
     ];
+
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
