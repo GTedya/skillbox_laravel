@@ -8,10 +8,10 @@
         <form action="{{ url('hotels',$hotel) }}" method="POST">
             @method('DELETE')
             @csrf
-            <x-button>Удалить</x-button>
+            <x-link-button>Удалить</x-link-button>
         </form>
         <x-link-button href="{{ route('hotels.edit', ['hotel' => $hotel]) }}">Изменить</x-link-button>
-    @endif
+        @endif
     <div class="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
         <div class="flex flex-wrap mb-12">
             <div class="flex items-center">
@@ -48,29 +48,12 @@
                 <div>
                     <x-the-button type="submit" class=" h-full w-full">Загрузить номера</x-the-button>
                 </div>
-                @if(auth()->user()->is_admin)
-                    <div class="flex items-center mr-5">
-                        <x-link-button class=" h-full w-full" href="{{ route('rooms.create', ['hotel' => $hotel]) }}">
-                            Добавить номер
-                        </x-link-button>
-                    </div>
-                @endif
             </div>
         </form>
         @if($startDate && $endDate)
             <div class="flex flex-col w-full lg:w-4/5">
                 @foreach($rooms as $room)
                     <x-rooms.room-list-item :room="$room" :startDate="$startDate" :endDate="$endDate" class="mb-4"/>
-                    @if(auth()->user()->is_admin)
-                        <form action="{{ route('rooms.delete',['room'=>$room, 'hotel' => $room->hotel]) }}"
-                              method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <x-the-button class=" h-full w-full">Удалить</x-the-button>
-                        </form>
-                        <x-link-button href="{{ route('rooms.edit', ['room' => $room,'hotel' => $hotel]) }}">Изменить
-                        </x-link-button>
-                    @endif
                 @endforeach
             </div>
         @else

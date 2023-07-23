@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('floor_area', 8, 2);
             $table->string('type');
             $table->integer('price');
-            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hotel_id')->constrained();
             $table->timestamps();
         });
     }
