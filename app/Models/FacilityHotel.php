@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -22,9 +21,4 @@ class FacilityHotel extends Model
         'facility_id',
         'hotel_id',
     ];
-
-    public function facilableHotels(): MorphTo
-    {
-        return $this->morphTo();
-    }
 }
